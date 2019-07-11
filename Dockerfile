@@ -1,9 +1,11 @@
 FROM python:3.6.7-alpine
 
+ADD . /
+
 RUN apk update
 RUN apk add postgresql-libs
 RUN apk add --virtual .build-deps gcc musl-dev postgresql-dev
-RUN python3 -m pip install prometheus-pgbouncer-exporter==2.0.2 --verbose
+RUN python3 -m pip install -e . -vvv
 RUN apk --purge del .build-deps
 
 EXPOSE 9127

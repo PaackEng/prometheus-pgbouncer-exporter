@@ -94,7 +94,6 @@ class PgbouncerMetricsCollector():
                     {"type": "gauge", "column": "sv_login",   "metric": "server_login_connections",       "help": "Server connections currently in logging in process"},
                     {"type": "gauge", "column": "maxwait",    "metric": "client_maxwait_seconds",         "help": "How long the first (oldest) client in queue has waited, in seconds"},
                     {"type": "gauge", "column": "maxwait_us", "metric": "client_maxwait_us_microseconds", "help": "Microsecond part of the maximum waiting time."},
-                    {"type": "text",  "column": "pool_mode",  "metric": "client_pool_mode",               "help": "The pooling mode in use."},
                 ], {"database": "database", "user": "user"}, self.config.getExtraLabels())
             else:
                 success = False
@@ -111,7 +110,6 @@ class PgbouncerMetricsCollector():
                     {"type": "counter", "column": "max_connections",     "metric": "database_max_connections",     "help": "Maximum number of allowed connections for this database, as set by max_db_connections, either globally or per database."},
                     {"type": "gauge",   "column": "paused",              "metric": "database_paused",              "help": "1 if this database is currently paused, else 0."},
                     {"type": "gauge",   "column": "disabled",            "metric": "database_disabled",            "help": "1 if this database is currently disabled, else 0."},
-                    {"type": "text",    "column": "pool_mode",           "metric": "database_pool_mode",           "help": "The database’s override pool_mode, or NULL if the default will be used instead."},
                 ], {"name": "database", "database": "backend_database"}, self.config.getExtraLabels())
             else:
                 success = False
